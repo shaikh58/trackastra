@@ -5,6 +5,7 @@
 /tests/test_data
 /tests/data
 /tests/tmp
+/data
 */.models
 
 
@@ -170,3 +171,17 @@ cython_debug/
 #.idea/
 
 trackastra/_version.py
+runs/runs/2024-10-22_06-42-45_leavout-7-1/config.yaml
+runs/runs/2024-10-22_06-42-45_leavout-7-1/model.pt
+runs/runs/2024-10-22_06-42-45_leavout-7-1/train_config.yaml
+runs/runs/2024-10-22_06-42-45_leavout-7-1/checkpoints/epoch=9-step=12500.ckpt
+runs/runs/2024-10-22_06-42-45_leavout-7-1/checkpoints/last.ckpt
+runs/runs/2024-10-22_06-42-45_leavout-7-1/tb/version_0/events.out.tfevents.1729579525.mustafa-remote-1-0-0.12315.0
+runs/runs/2024-10-22_06-42-45_leavout-7-1/tb/version_0/hparams.yaml
+runs/runs/2024-10-22_22-13-13_leavout-9-1/config.yaml
+runs/runs/2024-10-22_22-13-13_leavout-9-1/model.pt
+runs/runs/2024-10-22_22-13-13_leavout-9-1/train_config.yaml
+runs/runs/2024-10-22_22-13-13_leavout-9-1/checkpoints/epoch=11-step=15000.ckpt
+runs/runs/2024-10-22_22-13-13_leavout-9-1/checkpoints/last.ckpt
+runs/runs/2024-10-22_22-13-13_leavout-9-1/tb/version_0/events.out.tfevents.1729635530.mustafa-remote-1-0-0.36675.0
+runs/runs/2024-10-22_22-13-13_leavout-9-1/tb/version_0/hparams.yaml

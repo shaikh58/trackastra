@@ -786,7 +786,7 @@ def train(args):
 
     datasets = dict()
 
-    CTCData = cache_class(args.cachedir if args.cache else None)
+    # CTCData = cache_class(args.cachedir if args.cache else None)
 
     n_gpus = torch.cuda.device_count() if args.distributed else 1
 
@@ -1093,7 +1093,7 @@ def parse_train_args():
         "--config",
         is_config_file=True,
         help="config file path",
-        default="configs/vanvliet.yaml",
+        default="/root/vast/mustafa/trackastra/scripts/leaveout-7-1.yaml",
     )
     parser.add_argument("-o", "--outdir", type=str, default="runs")
     parser.add_argument("--name", type=str, help="Name to append to timestamp")
@@ -1269,7 +1269,6 @@ def parse_train_args():
         )
 
     return args
-
 
 if __name__ == "__main__":
     args = parse_train_args()
