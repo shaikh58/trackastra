@@ -1093,7 +1093,7 @@ def parse_train_args():
         "--config",
         is_config_file=True,
         help="config file path",
-        default="/root/vast/mustafa/trackastra/scripts/leaveout-7-1.yaml",
+        default="/root/vast/mustafa/trackastra/scripts/debug-train.yaml",
     )
     parser.add_argument("-o", "--outdir", type=str, default="runs")
     parser.add_argument("--name", type=str, help="Name to append to timestamp")

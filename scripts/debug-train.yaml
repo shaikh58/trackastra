@@ -1,0 +1,35 @@
+batch_size: 8
+epochs: 50
+preallocate: False
+features: regionprops
+crop_size: # use the whole image (ours are 250x250)
+- 250
+- 250
+detection_folders:
+- TRA
+dropout: 0.01 # default
+example_images: False  # Slow
+input_train:
+# - /root/vast/mustafa/trackastra/data/lysosomes/8-3_individual_tiffs # don't use
+- /root/vast/mustafa/trackastra/data/lysosomes/7-3_individual_tiffs
+# - /root/vast/mustafa/trackastra/data/lysosomes/8-1_individual_tiffs
+# - /root/vast/mustafa/trackastra/data/lysosomes/9-1_individual_tiffs
+# - /root/vast/mustafa/trackastra/data/lysosomes/9-2_individual_tiffs
+# - /root/vast/mustafa/trackastra/data/lysosomes/9-3_individual_tiffs
+# - /root/vast/mustafa/trackastra/data/lysosomes/10-1_individual_tiffs
+# # - /root/vast/mustafa/trackastra/data/lysosomes/10-2_individual_tiffs # don't use
+# - /root/vast/mustafa/trackastra/data/lysosomes/10-3_individual_tiffs
+# - /root/vast/mustafa/trackastra/data/lysosomes/11-1_individual_tiffs
+input_val:
+# - /root/vast/mustafa/trackastra/data/lysosomes/7-2_individual_tiffs # don't use
+- /root/vast/mustafa/trackastra/data/lysosomes/8-2_individual_tiffs
+# - /root/vast/mustafa/trackastra/data/lysosomes/11-2_individual_tiffs
+max_tokens: 2048
+mixedp: False # whether to use automatic mixed precision training
+name: debug
+ndim: 2
+num_decoder_layers: 5
+num_encoder_layers: 5
+outdir: runs
+distributed: False
+window: 6

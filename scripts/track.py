@@ -16,14 +16,12 @@ base_outdir = "/root/vast/mustafa/trackastra/data/lysosomes/tracked"
 
 # model path
 use_pretrained = False
-# /root/vast/mustafa/trackastra/runs/runs/2024-10-22_06-42-45_leavout-7-1/model.pt
-model_path = "/root/vast/mustafa/trackastra/runs/runs/2024-10-22_22-13-13_leavout-9-1/model.pt" if not use_pretrained else None
 model_type = "trained" if not use_pretrained else "pretrained"
 
 # dataset_names = ['7-1', '7-2', '7-3','8-1', '8-2', # don't use 8-3 as it has frames with no masks
 #                  '9-1', '9-2', '9-3', '10-1', '10-2', '10-3', 
 #                  '11-1', '11-2']
-dataset_names = ['7-1']
+dataset_names = ['7-2','7-3','8-1','8-2']
 
 # Dynamically generate input and output directories
 input_dirs = [
@@ -31,7 +29,8 @@ input_dirs = [
         'img_dir': f"{base_img_dir}/{name}_individual_tiffs",
         'mask_dir': f"{base_mask_dir}/{name}_individual_tiffs_GT/TRA",
         'outdir': f"{base_outdir}/{name}-tracked-{model_type}",
-        'name': name
+        'name': name,
+        'model_path': f"/root/vast/mustafa/trackastra/runs/leaveout-{name}/model.pt" if not use_pretrained else None
     }
     for name in dataset_names
 ]
@@ -39,21 +38,23 @@ input_dirs = [
 # Load a pretrained model
 if use_pretrained:
     model = Trackastra.from_pretrained("general_2d", device=device)
-else:
-    m = Path(model_path)
-    if m.is_file():
-        model = Trackastra.from_folder(
-            m.parent,
-            device=device,
-        )
-    else:
-        model = Trackastra.from_folder(m.parent)
 
 for dir_set in input_dirs:
     img_dir = dir_set['img_dir']
     mask_dir = dir_set['mask_dir']
     outdir = dir_set['outdir']
     name = dir_set['name']
+    model_path = dir_set['model_path']
+
+    if not use_pretrained:
+        m = Path(model_path)
+        if m.is_file():
+            model = Trackastra.from_folder(
+                m.parent,
+                device=device,
+            )
+        else:
+            model = Trackastra.from_folder(m.parent)
 
     # Load images
     img_files = sorted([f for f in os.listdir(img_dir) if f.endswith('.tiff') or f.endswith('.tif')])
@@ -78,7 +79,7 @@ for dir_set in input_dirs:
     ctc_tracks, masks_tracked = graph_to_ctc(
         track_graph,
         masks,
-        outdir={outdir},
+        outdir=outdir,
     )
 
     napari_tracks, napari_tracks_graph, _ = graph_to_napari_tracks(track_graph)
